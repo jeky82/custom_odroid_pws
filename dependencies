@@ -1,0 +1,1 @@
+sudo apt-get install libxss-dev libx11-dev cpufrequtils
