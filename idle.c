@@ -25,7 +25,8 @@ void set_powersave(int pws_flag){
 }
  
 unsigned long int get_idle(XScreenSaverInfo *info, Display *display) {
-	// avg cpu load in the last 1,5,15 minutes	
+	// avg cpu load in the last 1,5,15 minutes
+	// details here http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages
 	double load[3];
 
 	// until xbmc have problem with xbmc this check is necessary
