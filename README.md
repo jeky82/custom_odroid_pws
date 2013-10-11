@@ -15,20 +15,27 @@ using the ondemand governator.
 2. INSTALLATION
 
 2.1 clone the git
+
 git clone https://github.com/jeky82/custom_odroid_pws.git
+
 cd custom_odroid_pws
 
 2.2 install necessary libray
+
 sudo apt-get install libxss-dev libx11-dev cpufrequtils
 
 2.3 compile
+
 gcc -o idle idle.c -lX11 -lXss
 
 2.4 copy in a bin directory
+
 sudo cp ./idle /bin/
 
 2.5 add it in rc.local
+
 sudo gedit /etc/rc.local
 
 2.6 add the line
+
 idle > /dev/null
