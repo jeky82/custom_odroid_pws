@@ -19,7 +19,7 @@ void set_powersave(int pws_flag){
 	} else{
 		// with these setting all the cores are automatically bumped up 
 		//system("cpufreq-set --min 1.4Ghz --max 1.4Ghz --governor performance");
-		system("cpufreq-set --min 1.4Ghz --max 2.0Ghz --governor ondemand"); //<-- overclock (uncomment to enalbe it, and comment previus line)
+		system("cpufreq-set --min 1.4Ghz --max 1.92Ghz --governor ondemand"); //<-- overclock (uncomment to enalbe it, and comment previus line)
 	}
 	
 }

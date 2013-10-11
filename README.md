@@ -9,7 +9,7 @@ trough the xscreensaver library. Also the average load of the
 processor is taken into account.
 When the system is detected ad in idle the all the 4 cores are
 blocked at frequency of 200 Mhz. Instead when the system is detected
-as not in idle the frequency is scaled between 1.4Ghz and 2Ghz
+as not in idle the frequency is scaled between 1.4Ghz and 1.92Ghz
 using the ondemand governator. 
 
 2. INSTALLATION
