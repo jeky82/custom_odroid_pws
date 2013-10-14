@@ -7,9 +7,8 @@
 void set_powersave(int pws_flag){
 	
 	if (pws_flag){
-		// downclock to 300-800 Mhz
+		// downclock to 200 Mhz
 		system("cpufreq-set --min 200Mhz --max 200Mhz --governor ondemand");
-		//system("cpufreq-set --min 200Mhz --governor powersave");
 		
 		// bump up or shutdown the cores that you want
 		system("echo 1 > /sys/devices/system/cpu/cpu1/online");
@@ -24,21 +23,24 @@ void set_powersave(int pws_flag){
 	
 }
  
-unsigned long int get_idle(XScreenSaverInfo *info, Display *display) {
+unsigned long int get_idle(XScreenSaverInfo *info, Display *display, int prev_state) {
 	// avg cpu load in the last 1,5,15 minutes
 	// details here http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages
 	double load[3];
-
-	// until xbmc have problem with xbmc this check is necessary
-	//if (0 == system("pidof -x xbmc > /dev/null")){
-	//	printf("xbmc");
-	//	return 0;
-	//}
-	          
-	if (getloadavg(load, 3) != -1) {     
-	 if (load[0] >= 0.5){
-		return 0;
-	 }  
+	      
+	if (getloadavg(load, 3) != -1) {
+		// if we are not in idle the limit is 0.5   
+		if (prev_state == 0) {  
+	 		if (load[0] > 0.5){
+				return 0;
+			}
+	 	}  else{
+	 		// if we are in idle and at 200MHz for core and all the core full loaded
+			// then we exit from idle
+	 		if (load[0] > 4){
+				return 0;
+			}
+	 	}
 	}
 
 	//display could be null if there is no X server running
@@ -64,7 +66,7 @@ int time_pws = 10*60*1000; // time to wait to go in power save (10 minutes)
 	if(fork() == 0) {
 		while(1) {
 			
-			time_idle = get_idle(info,display); // get idle time in milliseconds
+			time_idle = get_idle(info,display,0); // get idle time in milliseconds
 			printf("%lu ms\n", time_idle);
 			if (time_idle < time_pws ){
 				sleep((time_pws - time_idle)/1000 + 5); // add 5 seconds of delay to prevent very little difference
@@ -76,7 +78,7 @@ int time_pws = 10*60*1000; // time to wait to go in power save (10 minutes)
 				setpriority(PRIO_PROCESS, 0, -15); // change priority to low
 				while (time_idle >= time_pws ){ // check until we have to exit from the power saving mode
 					sleep(5);
-					time_idle = get_idle(info,display);
+					time_idle = get_idle(info,display,1);
 				}
 				setpriority(PRIO_PROCESS, 0, 0); // change priority to normal
 				
