@@ -3,6 +3,7 @@ Welcome to custom_odroid_pws Repository
 FOR ODROID U2
 
 1. DESCRIPTION
+
 idle.c contains a little program to monitor the idle status of 
 Odroid system. The idle status is monitored from the X server
 trough the xscreensaver library. Also the average load of the
