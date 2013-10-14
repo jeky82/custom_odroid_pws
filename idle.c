@@ -35,8 +35,8 @@ unsigned long int get_idle(XScreenSaverInfo *info, Display *display, int prev_st
 				return 0;
 			}
 	 	}  else{
-	 		// if we are in idle and at 200MHz for core and all the core full loaded
-			// then we exit from idle
+	 		// if we are in idle we are at 200MHz thus if all the cores are full loaded
+			// we have to exit from idle state
 	 		if (load[0] > 4){
 				return 0;
 			}
