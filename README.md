@@ -34,5 +34,5 @@ between 1.4Ghz and 1.92Ghz using the ondemand governator.
 2.4 add it to rc.local to enable idle monitor to be started when logged
 > sudo gedit /etc/rc.local
 
-2.5 add the line
+2.5 add at the bottom of the file the line
 > idle > /dev/null
