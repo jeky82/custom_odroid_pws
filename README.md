@@ -25,14 +25,13 @@ between 1.4Ghz and 1.92Ghz using the ondemand governator.
 2.2 install necessary libray
 > sudo apt-get install libxss-dev libx11-dev cpufrequtils
 
-2.3 compile
-> gcc -o idle idle.c -lX11 -lXss
+2.3 compile and install
+> make
 
-2.4 copy in a bin directory
-> sudo cp ./idle /bin/
+> sudo make install
 
-2.5 add it to rc.local to be started when logged
+2.4 add it to rc.local to enable idle monitor to bed started when logged
 > sudo gedit /etc/rc.local
 
-2.6 add the line
+2.5 add the line
 > idle > /dev/null
