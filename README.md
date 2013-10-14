@@ -8,7 +8,8 @@ Welcome to custom_odroid_pws Repository
 idle.c contains is little program to monitor the idle status of 
 Odroid system. The idle status is monitored from the X server
 trough the xscreensaver library. Also the average load of the
-processor in the last minute is taken into account.
+processors in the last minute is taken into account to detect the
+idle status of the system.
 When the system is detected in idle the default policy consists
 into block all the 4 cores at frequency of 200 Mhz. Instead when 
 the system is detected as not in idle the frequency is setted
