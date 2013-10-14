@@ -22,7 +22,7 @@ between 1.4Ghz and 1.92Ghz using the ondemand governator.
 
 > cd custom_odroid_pws
 
-2.2 install necessary libray
+2.2 install the necessary libraries
 > sudo apt-get install libxss-dev libx11-dev cpufrequtils
 
 2.3 compile and install
