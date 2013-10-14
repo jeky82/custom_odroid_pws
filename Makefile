@@ -5,4 +5,4 @@ clean:
 	rm idle
 
 install:
-	sudo cp idle /bin/
+	cp idle /bin/
