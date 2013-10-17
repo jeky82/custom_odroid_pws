@@ -30,28 +30,22 @@ unsigned long int get_idle(XScreenSaverInfo *info, Display *display, int prev_st
 	      
 	if (getloadavg(load, 3) != -1) {
 		// if we are not in idle the limit is 0.5   
-		if (prev_state == 0) {  
-	 		if (load[0] > 0.5){
-				return 0;
-			}
-	 	}  else{
-	 		// if we are in idle we are at 200MHz thus if all the cores are full loaded
-			// we have to exit from idle state
-	 		if (load[0] > 4){
-				return 0;
-			}
-	 	}
+		if (prev_state == 0 && load[0] > 0.5)
+	 		return 0;
+	 		
+	 	// if we are in idle we are at 200MHz thus if all the cores are full loaded
+		// we have to exit from idle state
+	 	if (prev_state == 1 && load[0] > 4)
+			return 0;
 	}
 
 	//display could be null if there is no X server running
-	if (info == NULL || display == NULL) {
+	if (info == NULL || display == NULL) 
 	    return -1;
-	}
 
 	//X11 is running, try to retrieve info
-	if (XScreenSaverQueryInfo(display, DefaultRootWindow(display), info) == 0) {
+	if (XScreenSaverQueryInfo(display, DefaultRootWindow(display), info) == 0)
 		return -1;
-	}
 
 	return info->idle;  
 }
@@ -89,6 +83,5 @@ int time_pws = 10*60*1000; // time to wait to go in power save (10 minutes)
 			}
 		}
 	}
-
 	return 0;
 }
