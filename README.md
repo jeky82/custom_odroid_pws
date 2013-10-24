@@ -17,6 +17,9 @@ between 1.4Ghz and 1.92Ghz using the ondemand governator.
 
 
 ==== INSTALLATION ====
+DO NOT ATT it in /etc/rc.local script. idle program MUST run after
+X session is started
+
 
 2.1 clone the git
 > git clone https://github.com/jeky82/custom_odroid_pws.git
@@ -31,8 +34,3 @@ between 1.4Ghz and 1.92Ghz using the ondemand governator.
 
 > sudo make install
 
-2.4 add it to rc.local to enable idle monitor to be started when logged
-> sudo gedit /etc/rc.local
-
-2.5 add at the bottom of the file the line
-> idle > /dev/null
