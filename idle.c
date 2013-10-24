@@ -27,15 +27,17 @@ unsigned long int get_idle(XScreenSaverInfo *info, Display *display, int prev_st
 	// avg cpu load in the last 1,5,15 minutes
 	// details here http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages
 	double load[3];
-	      
+	double t1=0.5;
+	double t2=4;
+
 	if (getloadavg(load, 3) != -1) {
 		// if we are not in idle the limit is 0.5   
-		if (prev_state == 0 && load[0] > 0.5)
+		if (prev_state == 0 && load[0] > t1)
 	 		return 0;
 	 		
 	 	// if we are in idle we are at 200MHz thus if all the cores are full loaded
 		// we have to exit from idle state
-	 	if (prev_state == 1 && load[0] > 4)
+	 	if (prev_state == 1 && load[0] > t2)
 			return 0;
 	}
 

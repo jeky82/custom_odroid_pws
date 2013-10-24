@@ -5,4 +5,5 @@ clean:
 	rm idle
 
 install:
-	cp idle /bin/
+	cp idle "/usr/local/bin/"
+	cp powersave.sh "/usr/local/bin"
