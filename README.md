@@ -17,6 +17,7 @@ between 1.4Ghz and 1.92Ghz using the ondemand governator.
 
 
 ==== INSTALLATION ====
+
 DO NOT ATT it in /etc/rc.local script. idle program MUST run after
 X session is started
 
